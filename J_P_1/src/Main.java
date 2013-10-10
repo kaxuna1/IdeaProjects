@@ -1,4 +1,3 @@
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
 
@@ -18,6 +17,8 @@ public class Main {
         for(int i=0;i<Imas.length;i++){
             System.out.println(Imas[i]);
         }
+        Person kaxa=new Person(20,"kaxa");
+        System.out.println(kaxa.getName());
 
     }
 }
