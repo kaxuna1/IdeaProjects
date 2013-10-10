@@ -18,5 +18,6 @@ public class Main {
         for(int i=0;i<Imas.length;i++){
             System.out.println(Imas[i]);
         }
+
     }
 }
