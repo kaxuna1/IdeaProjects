@@ -1,24 +1,18 @@
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
-        int k=0;
-        int[] mas;
-         String[] Smas={"kaxa","salome", "irma"}; //masivze literalis minicheba
-         int[] Imas=new int[100];//gansazgvruli zomis masivi Int tipis cvladebis shesanaxad
-
-        mas = new int[]{100, 200};
-        for (int i = 0; i<Imas.length;i++) {
-                if(i<Smas.length){
-                System.out.println(Smas[i]);
-                }
-                Imas[i]=(int)(Math.random()*i);
-        }
-        for(int i=0;i<Imas.length;i++){
-            System.out.println(Imas[i]);
-        }
-        Person kaxa=new Person(20,"kaxa");
-        System.out.println(kaxa.getName());
-
+    dog x=new dog("nagazi","chiko",100);
+        x.cick();
+        x.cick("stick");
+        x.cick("gun");
+        x.cick("stick");
+        ArrayList<dog> dogList;
+        dogList = new ArrayList<dog>();
+        dogList.add(x);
+        dogList.add(new dog("avcharka", "lesi", 140));
+        dogList.get(1).cick();
+        dogList.get(1).showHealth();
     }
 }
