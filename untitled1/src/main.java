@@ -7,13 +7,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-/**
- * Created with IntelliJ IDEA.
- * User: kakha
- * Date: 10/10/13
- * Time: 5:50 PM
- * To change this template use File | Settings | File Templates.
- */
 public class main {
     private JPanel panel1;
     private JPanel panel2;

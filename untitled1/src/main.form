@@ -61,7 +61,9 @@
                   </splitpane>
                   <vspacer id="5f286">
                     <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="1" use-parent-layout="false">
+                        <preferred-size width="50" height="50"/>
+                      </grid>
                     </constraints>
                   </vspacer>
                   <component id="82ebd" class="javax.swing.JButton" binding="newPageButton" default-binding="true">
