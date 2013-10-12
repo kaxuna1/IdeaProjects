@@ -19,6 +19,10 @@ import java.io.File;
  * To change this template use File | Settings | File Templates.
  */
 public class main {
+    public DefaultTableModel tableModel1;
+    public JTable table;
+    JPanel panelT;
+
     private void createUIComponents() {
 
     }
@@ -37,7 +41,7 @@ public class main {
     private JScrollPane scr;
     static Settings settings;
     private static DefaultTableModel tableModel;
-
+    JTextField searchField;
 
 
 
@@ -96,10 +100,6 @@ public class main {
                     if(textField2.getText().isEmpty()){
                         textField2.setText("empty");
                     }
-
-
-
-
                 }
 
             }
@@ -108,17 +108,15 @@ public class main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    String tableName=list1.getSelectedValue().toString();
+                    final String tableName=list1.getSelectedValue().toString();
                     Class.forName("com.mysql.jdbc.Driver");
                     Connection connection=DriverManager.getConnection("jdbc:mysql://"+settings.getHost(),settings.getUsername(),settings.getPassword());
                     PreparedStatement preparedStatement=connection.prepareStatement(String.format("select * from %s", tableName));
                     final ResultSet resultSet=preparedStatement.executeQuery();
                     final ResultSetMetaData metadata = resultSet.getMetaData();
                     final int columnCount = metadata.getColumnCount();
-
                     tableModel = new DefaultTableModel(new Object[]{},0);
-
-                    JFrame frameTable=new JFrame("table "+ tableName);
+                    final JFrame frameTable=new JFrame("table "+ tableName);
 
                     for(int i=1;i<=columnCount;i++){
                         String name=metadata.getColumnName(i);
@@ -133,15 +131,21 @@ public class main {
                         }
                         tableModel.addRow(ss);
                     }
-                    JTable table = new JTable(tableModel);
+
+                    table = new JTable(tableModel);
 
                     frameTable.setSize(400,400);
-                    JButton btn1=new JButton("export as text");
-                    JPanel panelT=new JPanel();
+
+                    searchField = new JTextField();
+                    JButton btn1=new JButton("Search");
+
+                    panelT = new JPanel();
                     panelT.add(new JScrollPane(table));
                     JPanel panelT2 =new JPanel();
                     panelT2.add(btn1);
                     JButton btn2=new JButton("click");
+                    searchField.setColumns(15);
+                    panelT2.add(searchField);
                     panelT2.add(btn2);
                     panelT.add(panelT2);
 
@@ -151,46 +155,50 @@ public class main {
 
 
                     frameTable.setVisible(true);
-                    btn1.addActionListener(new ActionListener() {
+                    btn2.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-
-                            String export="";
+                                  String searchString=searchField.getText().toString();
                             try {
-                                for(int i=0;i<metadata.getColumnCount();i++){
+                                Class.forName("com.mysql.jdbc.Driver");
 
+                                Connection connection=DriverManager.getConnection("jdbc:mysql://"+settings.getHost(),settings.getUsername(),settings.getPassword());
+                                PreparedStatement statement2=connection.prepareStatement(String.format("select * from %s where id=%s", tableName,searchString));
+                                final ResultSet resultSet2=statement2.executeQuery();
+                                tableModel1 = new DefaultTableModel(new Object[]{},0);
+                                for(int i=1;i<=columnCount;i++){
+                                    String name=metadata.getColumnName(i);
 
+                                    tableModel.addColumn(name);
                                 }
+                                while (resultSet.next()){
+                                    String[] ss=new String[columnCount];
+                                    for (int i=1;i<=columnCount;i++){
+                                        ss[i-1]=resultSet.getString(i);
+                                    }
+                                    tableModel1.addRow(ss);
+                                }
+                                table=new JTable(tableModel1);
+                                panelT.add(table);
+                                frameTable.revalidate();
+                                frameTable.repaint();
+                            } catch (ClassNotFoundException e1) {
+                                e1.printStackTrace();
                             } catch (SQLException e1) {
                                 e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                             }
                         }
                     });
-
-
-
-                }catch (Exception ee){
-
-                }
-
-
-
-
+                }catch (Exception ee){}
             }
         });
-
-
     }
     public void setS(String s1,String s2,String s3){
         settings.setHost(s1);
         settings.setUsername(s2);
         settings.setPassword(s3);
-
     }
-
-
     public static void main(String[] args) throws InterruptedException, InvocationTargetException {
-
 
         JFrame frame = new JFrame("main");
         frame.setContentPane(new main().panel1);
@@ -198,15 +206,5 @@ public class main {
         frame.pack();
         frame.setResizable(false);
         frame.setVisible(true);
-
-
-
-
-
-
-
-
-
-
     }
 }
