@@ -1,23 +1,14 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.io.File;
+import java.util.Vector;
 
 
-/**
- * Created with IntelliJ IDEA.
- * User: kakha
- * Date: 10/12/13
- * Time: 12:11 AM
- * To change this template use File | Settings | File Templates.
- */
 public class main {
     public DefaultTableModel tableModel1;
     public JTable table;
@@ -42,13 +33,17 @@ public class main {
     static Settings settings;
     private static DefaultTableModel tableModel;
     JTextField searchField;
+    JTextField columnChoose;
+
 
 
 
     public main() {
 
         settings = new Settings("ka","ka","kax");
+
         try{
+
             FileInputStream fileInputStream=new FileInputStream("settings.st");//ვქმნით ფაილის წასაკითხ კანალს
             ObjectInputStream objectInputStream=new ObjectInputStream(fileInputStream);//ვქმნით ობიექტის შემომტან კანალს
             Object one=objectInputStream.readObject();//ვკითხულობთ ობიექტს
@@ -61,7 +56,10 @@ public class main {
 
         }
         try{
+
             Class.forName("com.mysql.jdbc.Driver");
+
+
             Connection connection=DriverManager.getConnection("jdbc:mysql://"+settings.getHost(),settings.getUsername(),settings.getPassword());
             DatabaseMetaData metaData=connection.getMetaData();
             ResultSet resultSet=metaData.getTables(null,null,"%",null);
@@ -117,11 +115,13 @@ public class main {
                     final int columnCount = metadata.getColumnCount();
                     tableModel = new DefaultTableModel(new Object[]{},0);
                     final JFrame frameTable=new JFrame("table "+ tableName);
+                    Vector<String> v=new Vector<String>();
 
                     for(int i=1;i<=columnCount;i++){
                         String name=metadata.getColumnName(i);
 
                         tableModel.addColumn(name);
+                        v.add(name);
 
                     }
                     while (resultSet.next()){
@@ -134,19 +134,24 @@ public class main {
 
                     table = new JTable(tableModel);
 
-                    frameTable.setSize(400,400);
+                    frameTable.setSize(800,400);
 
                     searchField = new JTextField();
+                    final JComboBox comboBox=new JComboBox(v);
+                    columnChoose=new JTextField();
+                    columnChoose.setColumns(10);
+
                     JButton btn1=new JButton("Search");
 
                     panelT = new JPanel();
                     panelT.add(new JScrollPane(table));
                     JPanel panelT2 =new JPanel();
-                    panelT2.add(btn1);
+
                     JButton btn2=new JButton("click");
                     searchField.setColumns(15);
+                    panelT2.add(comboBox);
                     panelT2.add(searchField);
-                    panelT2.add(btn2);
+                    panelT2.add(btn1);
                     panelT.add(panelT2);
 
 
@@ -155,33 +160,38 @@ public class main {
 
 
                     frameTable.setVisible(true);
-                    btn2.addActionListener(new ActionListener() {
+                    btn1.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                                   String searchString=searchField.getText().toString();
                             try {
                                 Class.forName("com.mysql.jdbc.Driver");
-
+                                String col=comboBox.getSelectedItem().toString();
                                 Connection connection=DriverManager.getConnection("jdbc:mysql://"+settings.getHost(),settings.getUsername(),settings.getPassword());
-                                PreparedStatement statement2=connection.prepareStatement(String.format("select * from %s where id=%s", tableName,searchString));
+                                PreparedStatement statement2=connection.prepareStatement(String.format("select * from %s where %s='%s'", tableName,col,searchString));
                                 final ResultSet resultSet2=statement2.executeQuery();
+                                final ResultSetMetaData metadata2 = resultSet2.getMetaData();
                                 tableModel1 = new DefaultTableModel(new Object[]{},0);
                                 for(int i=1;i<=columnCount;i++){
-                                    String name=metadata.getColumnName(i);
+                                    String name=metadata2.getColumnName(i);
 
-                                    tableModel.addColumn(name);
+                                    tableModel1.addColumn(name);
                                 }
-                                while (resultSet.next()){
+                                while (resultSet2.next()){
                                     String[] ss=new String[columnCount];
                                     for (int i=1;i<=columnCount;i++){
-                                        ss[i-1]=resultSet.getString(i);
+                                        ss[i-1]=resultSet2.getString(i);
                                     }
                                     tableModel1.addRow(ss);
                                 }
-                                table=new JTable(tableModel1);
-                                panelT.add(table);
-                                frameTable.revalidate();
-                                frameTable.repaint();
+                                JFrame searchFrame=new JFrame("search frame");
+                                JPanel searchPanel=new JPanel();
+                                JTable searchTable=new JTable(tableModel1);
+                                searchPanel.add(new JScrollPane(searchTable));
+                                searchFrame.add(searchPanel);
+                                searchFrame.setSize(600,200);
+                                searchFrame.setVisible(true);
+
                             } catch (ClassNotFoundException e1) {
                                 e1.printStackTrace();
                             } catch (SQLException e1) {
