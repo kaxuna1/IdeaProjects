@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="mySQLViewer:jar">
+    <output-path>$USER_HOME$/Desktop/11</output-path>
+    <properties id="ant-preprocessing">
+      <options enabled="true" />
+    </properties>
+    <root id="archive" name="mySQLViewer.jar">
+      <element id="module-output" name="mySQLViewer" />
+      <element id="library" level="application" name="mysql-connector-java-5.1.26-bin" />
+    </root>
+  </artifact>
+</component>

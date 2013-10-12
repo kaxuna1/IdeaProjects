@@ -4,9 +4,12 @@
     <list default="true" id="ceda8d5a-2985-4ee5-89ef-fdbc896c2df4" name="Default" comment="" />
     <ignored path="untitled1.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/main.java" changelist="ceda8d5a-2985-4ee5-89ef-fdbc896c2df4" time="1381427028595" ignored="false" />
+    <file path="/main.java" changelist="ceda8d5a-2985-4ee5-89ef-fdbc896c2df4" time="1381536134598" ignored="false" />
     <file path="/profile.java" changelist="ceda8d5a-2985-4ee5-89ef-fdbc896c2df4" time="1381510117508" ignored="false" />
     <file path="/fragment.java" changelist="ceda8d5a-2985-4ee5-89ef-fdbc896c2df4" time="1381427752501" ignored="false" />
+    <file path="$PROJECT_DIR$/../mySQLViewer/src/main.java" changelist="ceda8d5a-2985-4ee5-89ef-fdbc896c2df4" time="1381536182156" ignored="false" />
+    <file path="$PROJECT_DIR$/../mySQLViewer/src/main.form" changelist="ceda8d5a-2985-4ee5-89ef-fdbc896c2df4" time="1381534467748" ignored="false" />
+    <file path="$PROJECT_DIR$/../test11/src/TableColumnAdd.java" changelist="ceda8d5a-2985-4ee5-89ef-fdbc896c2df4" time="1381533074988" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,14 +83,14 @@
       <file leaf-file-name="main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="0" selection-start="236" selection-end="236" vertical-scroll-proportion="0.01954023">
+            <state line="34" column="96" selection-start="1152" selection-end="1172" vertical-scroll-proportion="0.01954023">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#683#691#0" expanded="true" />
-                <element signature="e#741#749#0" expanded="true" />
-                <element signature="e#790#798#0" expanded="true" />
-                <element signature="e#1203#1211#0" expanded="true" />
-                <element signature="e#3629#3637#0" expanded="true" />
+                <element signature="e#780#788#0" expanded="true" />
+                <element signature="e#838#846#0" expanded="true" />
+                <element signature="e#887#895#0" expanded="true" />
+                <element signature="e#1390#1398#0" expanded="true" />
+                <element signature="e#3816#3824#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -142,7 +145,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
+    <option name="width" value="1932" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -161,7 +164,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -172,19 +175,32 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="false" />
     <property name="project.structure.last.edited" value="Global Libraries" />
-    <property name="project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="true" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="GenerateAntBuildDialog.generateSingleFile" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mysql-connector-java-5.1.26-bin.jar!/" />
+    <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mysql-connector-java-5.1.26-bin.jar!/" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="untitled1" />
     <property name="Database.TableEditor.Splitter" value="0.9" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
@@ -200,8 +216,8 @@
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
-    <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="Application.main">
     <configuration default="false" name="main" type="Application" factoryName="Application" temporary="true">
@@ -241,6 +257,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -267,19 +296,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -389,14 +405,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1932" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14194237" sideWeight="0.67096776" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14171124" sideWeight="0.671875" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.67096776" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.671875" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.6707589" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39955357" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -411,14 +427,14 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17477204" sideWeight="0.6707589" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17433155" sideWeight="0.671875" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -492,11 +508,11 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#683#691#0" expanded="true" />
-            <element signature="e#741#749#0" expanded="true" />
-            <element signature="e#790#798#0" expanded="true" />
-            <element signature="e#1203#1211#0" expanded="true" />
-            <element signature="e#3629#3637#0" expanded="true" />
+            <element signature="e#780#788#0" expanded="true" />
+            <element signature="e#838#846#0" expanded="true" />
+            <element signature="e#887#895#0" expanded="true" />
+            <element signature="e#1390#1398#0" expanded="true" />
+            <element signature="e#3816#3824#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -523,11 +539,11 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#683#691#0" expanded="true" />
-            <element signature="e#741#749#0" expanded="true" />
-            <element signature="e#790#798#0" expanded="true" />
-            <element signature="e#1203#1211#0" expanded="true" />
-            <element signature="e#3629#3637#0" expanded="true" />
+            <element signature="e#780#788#0" expanded="true" />
+            <element signature="e#838#846#0" expanded="true" />
+            <element signature="e#887#895#0" expanded="true" />
+            <element signature="e#1390#1398#0" expanded="true" />
+            <element signature="e#3816#3824#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -555,11 +571,11 @@
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/4103fa8/15b2e02e-4574-47db-9a5f-de0ecd4abbaa/kaxa..test1">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="uml://JAVA/main">
@@ -581,19 +597,14 @@
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/4103fa8/d1fefa40-6fe5-4e76-bec2-03c70912e223/kaxajava..test1">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/profile.form">
+    <entry file="file://$PROJECT_DIR$/src/main.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
       </provider>
@@ -605,16 +616,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/profile.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="236" selection-end="236" vertical-scroll-proportion="0.01954023">
+        <state line="34" column="96" selection-start="1152" selection-end="1172" vertical-scroll-proportion="0.01954023">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#683#691#0" expanded="true" />
-            <element signature="e#741#749#0" expanded="true" />
-            <element signature="e#790#798#0" expanded="true" />
-            <element signature="e#1203#1211#0" expanded="true" />
-            <element signature="e#3629#3637#0" expanded="true" />
+            <element signature="e#780#788#0" expanded="true" />
+            <element signature="e#838#846#0" expanded="true" />
+            <element signature="e#887#895#0" expanded="true" />
+            <element signature="e#1390#1398#0" expanded="true" />
+            <element signature="e#3816#3824#0" expanded="true" />
           </folding>
         </state>
       </provider>

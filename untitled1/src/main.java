@@ -1,13 +1,16 @@
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.ArrayList;
 
 
 public class main {
+
     private JPanel panel1;
     private JPanel panel2;
     private JPanel main;
@@ -23,6 +26,8 @@ public class main {
     public ArrayList<String> emails=new ArrayList<String>();
     public ArrayList<String> mob=new ArrayList<String>();
     ArrayList<String> s=new ArrayList<String>();
+    private static DefaultTableModel tableModel;
+    private static int columnNumber = 1;
     public main() {
 
         try {
@@ -128,7 +133,7 @@ public class main {
         });
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException, InvocationTargetException {
         JFrame frame = new JFrame("main");
 
         frame.setContentPane(new main().panel1);
