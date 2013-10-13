@@ -1,3 +1,6 @@
+import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -31,6 +34,7 @@ public class main {
     private JTable table1;
     private JButton createTableButton;
     private JComboBox comboBox1;
+    private JButton refreshListButton;
     private JScrollPane scr;
     static Settings settings;
     private static DefaultTableModel tableModel;
@@ -41,6 +45,7 @@ public class main {
     JFrame createTableFrame;
     JScrollPane createTableScrollPane;
     JComboBox<String> ctCombo;
+    JTextField newTableName;
 
 
 
@@ -119,7 +124,8 @@ public class main {
                     PreparedStatement preparedStatement=connection.prepareStatement(String.format("select * from %s", tableName));
                     final ResultSet resultSet=preparedStatement.executeQuery();
                     final ResultSetMetaData metadata = resultSet.getMetaData();
-                    final int columnCount = metadata.getColumnCount();
+                    final int columnCount;
+                    columnCount = metadata.getColumnCount();
                     checkBoxQuery=new JCheckBox("serch the whole word");
 
                     tableModel = new DefaultTableModel(new Object[]{},0);
@@ -225,16 +231,123 @@ public class main {
             public void actionPerformed(ActionEvent e) {
 
                 if(comboBox1.getSelectedItem().toString()!="Number Of Fields"){
-                createTableFrame = new JFrame("Create Table");
-                int numberOfFields=Integer.valueOf(comboBox1.getSelectedItem().toString());
-                ArrayList<JComboBox> comboBoxes=new ArrayList<JComboBox>();
-                ArrayList<JTextPane> textPanes=new ArrayList<JTextPane>();
-                JPanel pp=new JPanel();
-                pp.add(new JScrollPane());
-                createTableFrame.add(pp);
-                createTableFrame.setVisible(true);
+                    Vector<String> dataTypes=new Vector<String>();
+                    dataTypes.add("INT ( 11 )");
+                    dataTypes.add("VARCHAR( 50 )");
+                    dataTypes.add("DATE");
+                    dataTypes.add("TEXT");
+                    dataTypes.add("TIME");
+                    dataTypes.add("BLOB");
+                    dataTypes.add("LONGBLOB");
+                    dataTypes.add("ENUM");
+                    dataTypes.add("BOOL");
+                    dataTypes.add("SET");
+                    dataTypes.add("DECIMAL");
+                    dataTypes.add("CHAR");
+                    final JCheckBox dropTableCheck=new JCheckBox("Drop table if existes");
+
+
+                    createTableFrame = new JFrame("Create Table");
+                    final int numberOfFields;
+                    numberOfFields = Integer.valueOf(comboBox1.getSelectedItem().toString());
+                    final ArrayList<JComboBox> comboBoxes=new ArrayList<JComboBox>();
+                    final ArrayList<JTextField> textFields=new ArrayList<JTextField>();
+                for(int i=0;i<numberOfFields;i++){
+                    textFields.add(new JTextField());
+                    comboBoxes.add(new JComboBox(dataTypes));
+                    }
+                    JPanel panelc=new JPanel();
+                    panelc.setLayout(new BoxLayout(panelc, BoxLayout.Y_AXIS));
+
+                for (int i=0;i<numberOfFields;i++){
+                    JPanel panelInner=new JPanel();
+                    panelInner.add(textFields.get(i));
+                    textFields.get(i).setColumns(15);
+                    panelInner.add(comboBoxes.get(i));
+                    panelc.add(panelInner);
+
+                }
+                    panelc.add(dropTableCheck);
+
+                    JPanel pp=new JPanel();
+                    JButton btnCreate=new JButton("Create Table");
+
+                    newTableName = new JTextField();
+                    newTableName.setColumns(15);
+                    pp.add(new JScrollPane(panelc));
+
+                    pp.add(newTableName);
+                    pp.add(btnCreate);
+
+                    createTableFrame.add(pp);
+
+
+                    createTableFrame.setSize(300,420);
+                    createTableFrame.setResizable(false);
+                    createTableFrame.setVisible(true);
+                    btnCreate.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            String query="";
+                            query+="CREATE TABLE ";
+                            query+=newTableName.getText().toString();
+                            query+=" (";
+                            for(int i=0;i<numberOfFields;i++){
+                                     query+=String.format("%s %s",textFields.get(i).getText().toString(),comboBoxes.get(i).getSelectedItem().toString());
+                                if(i<numberOfFields-1){
+                                    query+=",";
+                                }
+                            }
+                            query+=")";
+
+
+
+
+                            MysqlDataSource ds = new MysqlConnectionPoolDataSource();
+                            String[] all = settings.getHost().split("/");
+                            ds.setServerName(all[0]);
+                            ds.setPort(3306);
+                            ds.setUser(settings.getUsername());
+                            ds.setPassword(settings.getPassword());
+                            Connection connection = null ;
+                            try {
+                                connection =  ds.getConnection();
+                                Statement statement = connection.createStatement();
+                                statement.executeUpdate("USE "+all[1]) ;
+                                if(dropTableCheck.isSelected()){
+                                    statement.execute(String.format("DROP TABLE IF EXISTS %s", newTableName.getText().toString()));
+                                }
+                                statement.executeUpdate(query);
+                            } catch (SQLException e1) {
+                                e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                            }
+                        }
+                    });
 
             } }
+        });
+
+        refreshListButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+
+                    Class.forName("com.mysql.jdbc.Driver");
+
+
+                    Connection connection=DriverManager.getConnection("jdbc:mysql://"+settings.getHost(),settings.getUsername(),settings.getPassword());
+                    DatabaseMetaData metaData=connection.getMetaData();
+                    ResultSet resultSet=metaData.getTables(null,null,"%",null);
+                    ArrayList<String> tables=new ArrayList<String>();
+                    while (resultSet.next()){
+                        tables.add(resultSet.getString(3));
+                    }
+                    list1.setListData(tables.toArray());
+
+                }catch (Exception ss){
+
+                }
+            }
         });
     }
     public void setS(String s1,String s2,String s3){
