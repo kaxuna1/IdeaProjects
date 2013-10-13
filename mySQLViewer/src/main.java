@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -28,12 +29,18 @@ public class main {
     protected JList<Object> list1;
     private JButton openTableButton;
     private JTable table1;
-    private JButton button2;
+    private JButton createTableButton;
+    private JComboBox comboBox1;
     private JScrollPane scr;
     static Settings settings;
     private static DefaultTableModel tableModel;
     JTextField searchField;
     JTextField columnChoose;
+    JCheckBox checkBoxQuery;
+    String query;
+    JFrame createTableFrame;
+    JScrollPane createTableScrollPane;
+    JComboBox<String> ctCombo;
 
 
 
@@ -65,7 +72,7 @@ public class main {
             ResultSet resultSet=metaData.getTables(null,null,"%",null);
             ArrayList<String> tables=new ArrayList<String>();
             while (resultSet.next()){
-                           tables.add(resultSet.getString(3));
+                tables.add(resultSet.getString(3));
             }
             list1.setListData(tables.toArray());
 
@@ -81,17 +88,17 @@ public class main {
             public void actionPerformed(ActionEvent e) {
                 if(!textField1.getText().isEmpty()&&!textField2.getText().isEmpty()){
 
-                   setS(textField1.getText(),textField2.getText(),textField3.getText());
-                try{
-                    FileOutputStream fileOutputStream=new FileOutputStream("settings.st");
-                    ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);
-                    objectOutputStream.writeObject(settings);
-                    objectOutputStream.close();
+                    setS(textField1.getText(),textField2.getText(),textField3.getText());
+                    try{
+                        FileOutputStream fileOutputStream=new FileOutputStream("settings.st");
+                        ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);
+                        objectOutputStream.writeObject(settings);
+                        objectOutputStream.close();
 
-                }catch (IOException l){
+                    }catch (IOException l){
 
-                }
-            }else{
+                    }
+                }else{
                     if(textField1.getText().isEmpty()){
                         textField1.setText("empty");
                     }
@@ -113,6 +120,8 @@ public class main {
                     final ResultSet resultSet=preparedStatement.executeQuery();
                     final ResultSetMetaData metadata = resultSet.getMetaData();
                     final int columnCount = metadata.getColumnCount();
+                    checkBoxQuery=new JCheckBox("serch the whole word");
+
                     tableModel = new DefaultTableModel(new Object[]{},0);
                     final JFrame frameTable=new JFrame("table "+ tableName);
                     Vector<String> v=new Vector<String>();
@@ -138,8 +147,8 @@ public class main {
 
                     searchField = new JTextField();
                     final JComboBox comboBox=new JComboBox(v);
-                    columnChoose=new JTextField();
-                    columnChoose.setColumns(10);
+
+
 
                     JButton btn1=new JButton("Search");
 
@@ -150,6 +159,7 @@ public class main {
                     JButton btn2=new JButton("click");
                     searchField.setColumns(15);
                     panelT2.add(comboBox);
+                    panelT2.add(checkBoxQuery);
                     panelT2.add(searchField);
                     panelT2.add(btn1);
                     panelT.add(panelT2);
@@ -163,12 +173,20 @@ public class main {
                     btn1.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                                  String searchString=searchField.getText().toString();
+                            String searchString=searchField.getText().toString();
                             try {
                                 Class.forName("com.mysql.jdbc.Driver");
                                 String col=comboBox.getSelectedItem().toString();
                                 Connection connection=DriverManager.getConnection("jdbc:mysql://"+settings.getHost(),settings.getUsername(),settings.getPassword());
-                                PreparedStatement statement2=connection.prepareStatement(String.format("select * from %s where %s='%s'", tableName,col,searchString));
+                                StringBuilder sql=new StringBuilder();
+
+                                if(!checkBoxQuery.isSelected()){
+
+                                    query = MessageFormat.format("select * from %s where %s like '%%s%'", tableName,col,searchString);
+                                } else{
+                                    query= MessageFormat.format("select * from %s where %s='%s'", tableName, col, searchString);
+                                }
+                                PreparedStatement statement2=connection.prepareStatement(query);
                                 final ResultSet resultSet2=statement2.executeQuery();
                                 final ResultSetMetaData metadata2 = resultSet2.getMetaData();
                                 tableModel1 = new DefaultTableModel(new Object[]{},0);
@@ -201,6 +219,22 @@ public class main {
                     });
                 }catch (Exception ee){}
             }
+        });
+        createTableButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if(comboBox1.getSelectedItem().toString()!="Number Of Fields"){
+                createTableFrame = new JFrame("Create Table");
+                int numberOfFields=Integer.valueOf(comboBox1.getSelectedItem().toString());
+                ArrayList<JComboBox> comboBoxes=new ArrayList<JComboBox>();
+                ArrayList<JTextPane> textPanes=new ArrayList<JTextPane>();
+                JPanel pp=new JPanel();
+                pp.add(new JScrollPane());
+                createTableFrame.add(pp);
+                createTableFrame.setVisible(true);
+
+            } }
         });
     }
     public void setS(String s1,String s2,String s3){
