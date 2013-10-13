@@ -38,10 +38,6 @@ public class main {
     private JScrollPane scr;
     static Settings settings;
     private static DefaultTableModel tableModel;
-    JTextField searchField;
-    JTextField columnChoose;
-    JCheckBox checkBoxQuery;
-    String query;
     JFrame createTableFrame;
     JScrollPane createTableScrollPane;
     JComboBox<String> ctCombo;
@@ -126,6 +122,7 @@ public class main {
                     final ResultSetMetaData metadata = resultSet.getMetaData();
                     final int columnCount;
                     columnCount = metadata.getColumnCount();
+                    final JCheckBox checkBoxQuery;
                     checkBoxQuery=new JCheckBox("serch the whole word");
 
                     tableModel = new DefaultTableModel(new Object[]{},0);
@@ -150,7 +147,7 @@ public class main {
                     table = new JTable(tableModel);
 
                     frameTable.setSize(800,400);
-
+                    final JTextField searchField;
                     searchField = new JTextField();
                     final JComboBox comboBox=new JComboBox(v);
 
@@ -185,12 +182,12 @@ public class main {
                                 String col=comboBox.getSelectedItem().toString();
                                 Connection connection=DriverManager.getConnection("jdbc:mysql://"+settings.getHost(),settings.getUsername(),settings.getPassword());
                                 StringBuilder sql=new StringBuilder();
-
+                                final String query;
                                 if(!checkBoxQuery.isSelected()){
 
-                                    query = MessageFormat.format("select * from %s where %s like '%%s%'", tableName,col,searchString);
+                                    query = String.format("select * from %s where %s like '%s'", tableName,col,searchString);
                                 } else{
-                                    query= MessageFormat.format("select * from %s where %s='%s'", tableName, col, searchString);
+                                    query= String.format("select * from %s where %s='%s'", tableName, col, searchString);
                                 }
                                 PreparedStatement statement2=connection.prepareStatement(query);
                                 final ResultSet resultSet2=statement2.executeQuery();

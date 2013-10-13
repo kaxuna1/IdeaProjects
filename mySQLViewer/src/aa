@@ -1,6 +1,0 @@
-CREATE TABLE  `a5100064_kaxa1`.`tablename` (
-                 `id` INT NOT NULL ,
-                 `name` VARCHAR( 50 ) NOT NULL ,
-                 `pic` LONGBLOB NOT NULL ,
-                 `date` DATE NOT NULL
-                 ) ENGINE = MYISAM
