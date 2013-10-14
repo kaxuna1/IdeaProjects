@@ -119,6 +119,7 @@ public class main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
+                    final JButton openChangeStructure=new JButton("Change Structure");
                     final String tableName=list1.getSelectedValue().toString();
                     Class.forName("com.mysql.jdbc.Driver");
                     final Connection connection=DriverManager.getConnection("jdbc:mysql://"+settings.getHost(),settings.getUsername(),settings.getPassword());
@@ -173,6 +174,7 @@ public class main {
                     panelT2.add(searchField);
                     panelT2.add(btn1);
                     panelT2.add(btnInsert);
+                    panelT2.add(openChangeStructure);
                     panelT.add(panelT2);
 
 
@@ -253,6 +255,12 @@ public class main {
 
                         }
                     });
+                    openChangeStructure.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+
+                        }
+                    });
                     btn1.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -278,6 +286,7 @@ public class main {
 
                                     tableModel1.addColumn(name);
                                 }
+
                                 while (resultSet2.next()){
                                     String[] ss=new String[columnCount];
                                     for (int i=1;i<=columnCount;i++){
