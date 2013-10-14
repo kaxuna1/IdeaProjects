@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2e76b28b-5030-4fe0-ba7f-20b59d7a80c3" name="Default" comment="">
       <change type="DELETED" beforePath="C:\Users\kakha\IdeaProjects\mySQLViewer\icon.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\kakha\IdeaProjects\mySQLViewer\mysql-icon.png" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\kakha\IdeaProjects\mySQLViewer\readme.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.java" afterPath="$PROJECT_DIR$/src/main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mySQLViewer.iws" />
@@ -90,17 +92,17 @@
       <file leaf-file-name="main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="523" column="27" selection-start="23840" selection-end="23840" vertical-scroll-proportion="15.751985" vertical-offset="663" max-vertical-offset="8704">
+            <state line="526" column="42" selection-start="24134" selection-end="24134" vertical-scroll-proportion="0.6626984" vertical-offset="8319" max-vertical-offset="8823">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3876#14351#0" expanded="true" />
-                <element signature="e#14340#14341#0" expanded="true" />
-                <element signature="e#14398#20409#0" expanded="true" />
-                <element signature="e#20398#20399#0" expanded="true" />
-                <element signature="e#20457#21285#0" expanded="true" />
-                <element signature="e#21274#21275#0" expanded="true" />
-                <element signature="e#21333#22848#0" expanded="true" />
-                <element signature="e#22837#22838#0" expanded="true" />
+                <element signature="e#3906#14399#0" expanded="true" />
+                <element signature="e#14388#14389#0" expanded="true" />
+                <element signature="e#14446#20673#0" expanded="true" />
+                <element signature="e#20662#20663#0" expanded="true" />
+                <element signature="e#20721#21549#0" expanded="true" />
+                <element signature="e#21538#21539#0" expanded="true" />
+                <element signature="e#21597#23152#0" expanded="true" />
+                <element signature="e#23141#23142#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -225,38 +227,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mySQLViewer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mySQLViewer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mySQLViewer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mySQLViewer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mySQLViewer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -589,7 +559,7 @@
       <workItem from="1381775980464" duration="232000" />
       <workItem from="1381776228838" duration="6417000" />
       <workItem from="1381783129210" duration="902000" />
-      <workItem from="1381784563055" duration="289000" />
+      <workItem from="1381784563055" duration="613000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1381784697990</created>
@@ -603,7 +573,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18780000" />
+    <option name="totallyTimeSpent" value="19104000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -627,7 +597,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -724,14 +694,14 @@
         <state line="439" column="1" selection-start="19411" selection-end="19411" vertical-scroll-proportion="0.0" vertical-offset="7310" max-vertical-offset="7565">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3876#14351#0" expanded="true" />
-            <element signature="e#14340#14341#0" expanded="true" />
-            <element signature="e#14398#20409#0" expanded="true" />
-            <element signature="e#20398#20399#0" expanded="true" />
-            <element signature="e#20457#21285#0" expanded="true" />
-            <element signature="e#21274#21275#0" expanded="true" />
-            <element signature="e#21333#22848#0" expanded="true" />
-            <element signature="e#22837#22838#0" expanded="true" />
+            <element signature="e#3906#14399#0" expanded="true" />
+            <element signature="e#14388#14389#0" expanded="true" />
+            <element signature="e#14446#20673#0" expanded="true" />
+            <element signature="e#20662#20663#0" expanded="true" />
+            <element signature="e#20721#21549#0" expanded="true" />
+            <element signature="e#21538#21539#0" expanded="true" />
+            <element signature="e#21597#23152#0" expanded="true" />
+            <element signature="e#23141#23142#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -746,14 +716,14 @@
         <state line="372" column="36" selection-start="16453" selection-end="16453" vertical-scroll-proportion="0.0" vertical-offset="6324" max-vertical-offset="6800">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3876#14351#0" expanded="true" />
-            <element signature="e#14340#14341#0" expanded="true" />
-            <element signature="e#14398#20409#0" expanded="true" />
-            <element signature="e#20398#20399#0" expanded="true" />
-            <element signature="e#20457#21285#0" expanded="true" />
-            <element signature="e#21274#21275#0" expanded="true" />
-            <element signature="e#21333#22848#0" expanded="true" />
-            <element signature="e#22837#22838#0" expanded="true" />
+            <element signature="e#3906#14399#0" expanded="true" />
+            <element signature="e#14388#14389#0" expanded="true" />
+            <element signature="e#14446#20673#0" expanded="true" />
+            <element signature="e#20662#20663#0" expanded="true" />
+            <element signature="e#20721#21549#0" expanded="true" />
+            <element signature="e#21538#21539#0" expanded="true" />
+            <element signature="e#21597#23152#0" expanded="true" />
+            <element signature="e#23141#23142#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -763,36 +733,14 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3876#14351#0" expanded="true" />
-            <element signature="e#14340#14341#0" expanded="true" />
-            <element signature="e#14398#20409#0" expanded="true" />
-            <element signature="e#20398#20399#0" expanded="true" />
-            <element signature="e#20457#21285#0" expanded="true" />
-            <element signature="e#21274#21275#0" expanded="true" />
-            <element signature="e#21333#22848#0" expanded="true" />
-            <element signature="e#22837#22838#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3876#14351#0" expanded="true" />
-            <element signature="e#14340#14341#0" expanded="true" />
-            <element signature="e#14398#20409#0" expanded="true" />
-            <element signature="e#20398#20399#0" expanded="true" />
-            <element signature="e#20457#21285#0" expanded="true" />
-            <element signature="e#21274#21275#0" expanded="true" />
-            <element signature="e#21333#22848#0" expanded="true" />
-            <element signature="e#22837#22838#0" expanded="true" />
+            <element signature="e#3906#14399#0" expanded="true" />
+            <element signature="e#14388#14389#0" expanded="true" />
+            <element signature="e#14446#20673#0" expanded="true" />
+            <element signature="e#20662#20663#0" expanded="true" />
+            <element signature="e#20721#21549#0" expanded="true" />
+            <element signature="e#21538#21539#0" expanded="true" />
+            <element signature="e#21597#23152#0" expanded="true" />
+            <element signature="e#23141#23142#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -807,14 +755,36 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3876#14351#0" expanded="true" />
-            <element signature="e#14340#14341#0" expanded="true" />
-            <element signature="e#14398#20409#0" expanded="true" />
-            <element signature="e#20398#20399#0" expanded="true" />
-            <element signature="e#20457#21285#0" expanded="true" />
-            <element signature="e#21274#21275#0" expanded="true" />
-            <element signature="e#21333#22848#0" expanded="true" />
-            <element signature="e#22837#22838#0" expanded="true" />
+            <element signature="e#3906#14399#0" expanded="true" />
+            <element signature="e#14388#14389#0" expanded="true" />
+            <element signature="e#14446#20673#0" expanded="true" />
+            <element signature="e#20662#20663#0" expanded="true" />
+            <element signature="e#20721#21549#0" expanded="true" />
+            <element signature="e#21538#21539#0" expanded="true" />
+            <element signature="e#21597#23152#0" expanded="true" />
+            <element signature="e#23141#23142#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3906#14399#0" expanded="true" />
+            <element signature="e#14388#14389#0" expanded="true" />
+            <element signature="e#14446#20673#0" expanded="true" />
+            <element signature="e#20662#20663#0" expanded="true" />
+            <element signature="e#20721#21549#0" expanded="true" />
+            <element signature="e#21538#21539#0" expanded="true" />
+            <element signature="e#21597#23152#0" expanded="true" />
+            <element signature="e#23141#23142#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -856,17 +826,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="523" column="27" selection-start="23840" selection-end="23840" vertical-scroll-proportion="15.751985" vertical-offset="663" max-vertical-offset="8704">
+        <state line="526" column="42" selection-start="24134" selection-end="24134" vertical-scroll-proportion="0.6626984" vertical-offset="8319" max-vertical-offset="8823">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3876#14351#0" expanded="true" />
-            <element signature="e#14340#14341#0" expanded="true" />
-            <element signature="e#14398#20409#0" expanded="true" />
-            <element signature="e#20398#20399#0" expanded="true" />
-            <element signature="e#20457#21285#0" expanded="true" />
-            <element signature="e#21274#21275#0" expanded="true" />
-            <element signature="e#21333#22848#0" expanded="true" />
-            <element signature="e#22837#22838#0" expanded="true" />
+            <element signature="e#3906#14399#0" expanded="true" />
+            <element signature="e#14388#14389#0" expanded="true" />
+            <element signature="e#14446#20673#0" expanded="true" />
+            <element signature="e#20662#20663#0" expanded="true" />
+            <element signature="e#20721#21549#0" expanded="true" />
+            <element signature="e#21538#21539#0" expanded="true" />
+            <element signature="e#21597#23152#0" expanded="true" />
+            <element signature="e#23141#23142#0" expanded="true" />
           </folding>
         </state>
       </provider>

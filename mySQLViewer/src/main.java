@@ -57,9 +57,9 @@ public class main {
 
         try{
 
-            FileInputStream fileInputStream=new FileInputStream("settings.st");//ვქმნით ფაილის წასაკითხ კანალს
-            ObjectInputStream objectInputStream=new ObjectInputStream(fileInputStream);//ვქმნით ობიექტის შემომტან კანალს
-            Object one=objectInputStream.readObject();//ვკითხულობთ ობიექტს
+            final FileInputStream fileInputStream=new FileInputStream("settings.st");//ვქმნით ფაილის წასაკითხ კანალს
+            final ObjectInputStream objectInputStream=new ObjectInputStream(fileInputStream);//ვქმნით ობიექტის შემომტან კანალს
+            final Object one=objectInputStream.readObject();//ვკითხულობთ ობიექტს
             settings=(Settings)one;//settings ცვლადს ვანიჭებთ წაკითხულ ობიექტს ისე, თან ვუთითებთ რომ Settings ტიპად მიენიჭოს
             textField1.setText(settings.getHost());
             textField2.setText(settings.getUsername());
@@ -96,8 +96,8 @@ public class main {
 
                     setS(textField1.getText(),textField2.getText(),textField3.getText());
                     try{
-                        FileOutputStream fileOutputStream=new FileOutputStream("settings.st");
-                        ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);
+                        final FileOutputStream fileOutputStream=new FileOutputStream("settings.st");
+                        final ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);
                         objectOutputStream.writeObject(settings);
                         objectOutputStream.close();
 
@@ -137,15 +137,15 @@ public class main {
                     final Vector<String> v=new Vector<String>();
 
                     for(int i=1;i<=columnCount;i++){
-                        String name=metadata.getColumnName(i);
-                        String colType= metadata.getColumnTypeName(i);
+                        final String name=metadata.getColumnName(i);
+                        final String colType= metadata.getColumnTypeName(i);
 
                         tableModel.addColumn(String.format("%s(%s)", name, colType));
                         v.add(name);
 
                     }
                     while (resultSet.next()){
-                        String[] ss=new String[columnCount];
+                        final String[] ss=new String[columnCount];
                         for (int i=1;i<=columnCount;i++){
                             ss[i-1]=resultSet.getString(i);
                         }
@@ -338,11 +338,16 @@ public class main {
                     createTableFrame = new JFrame("Create Table");
                     final int numberOfFields;
                     numberOfFields = Integer.valueOf(comboBox1.getSelectedItem().toString());
-                    final ArrayList<JComboBox> comboBoxes=new ArrayList<JComboBox>();
-                    final ArrayList<JTextField> textFields=new ArrayList<JTextField>();
-                    final ArrayList<JRadioButton> radioButtons=new ArrayList<JRadioButton>();
-                    final ArrayList<JRadioButton> radioButtonsAutoIncriment=new ArrayList<JRadioButton>();
-                    final ButtonGroup group = new ButtonGroup();
+                    final ArrayList<JComboBox> comboBoxes;
+                    comboBoxes = new ArrayList<JComboBox>();
+                    final ArrayList<JTextField> textFields;
+                    textFields = new ArrayList<JTextField>();
+                    final ArrayList<JRadioButton> radioButtons;
+                    radioButtons = new ArrayList<JRadioButton>();
+                    final ArrayList<JRadioButton> radioButtonsAutoIncriment;
+                    radioButtonsAutoIncriment = new ArrayList<JRadioButton>();
+                    final ButtonGroup group;
+                    group = new ButtonGroup();
                     for(int i=0;i<numberOfFields;i++){
                         textFields.add(new JTextField());
                         comboBoxes.add(new JComboBox(dataTypes));
@@ -353,7 +358,8 @@ public class main {
                         group.add(radioButtons.get(i));
                     }
 
-                    JPanel panelc=new JPanel();
+                    final JPanel panelc;
+                    panelc = new JPanel();
                     panelc.setLayout(new BoxLayout(panelc, BoxLayout.Y_AXIS));
 
                     for (int i=0;i<numberOfFields;i++){
@@ -463,8 +469,9 @@ public class main {
             public void actionPerformed(ActionEvent e) {
                 Object[] options = {"Yes Delete",
                         "No don't Delete"};
-                int deleteConfim=JOptionPane.showOptionDialog(frame,"delete table "+list1.getSelectedValue().toString(),"message",
-                        JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE,null,options,options[1]);
+                int deleteConfim;
+                deleteConfim = JOptionPane.showOptionDialog(frame, "delete table " + list1.getSelectedValue().toString(), "message",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
                 if (deleteConfim==JOptionPane.OK_OPTION){
                     String[] all = settings.getHost().split("/");
                     MysqlDataSource ds = new MysqlConnectionPoolDataSource();
