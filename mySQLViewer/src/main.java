@@ -3,21 +3,25 @@ import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Vector;
+import java.io.Serializable;
+
 
 
 public class main {
-    public DefaultTableModel tableModel1;
-    public JTable table;
-    JPanel panelT;
-
+    private DefaultTableModel tableModel1;
+    private JTable table;
+    private JPanel panelT;
+    private static JFrame frame;
     private void createUIComponents() {
 
     }
@@ -29,19 +33,20 @@ public class main {
     private JTextField textField1;
     private JTextField textField2;
     private JTextField textField3;
-    protected JList<Object> list1;
+    private JList<Object> list1;
     private JButton openTableButton;
     private JTable table1;
     private JButton createTableButton;
     private JComboBox comboBox1;
     private JButton refreshListButton;
+    private JButton delateTableButton;
     private JScrollPane scr;
-    static Settings settings;
+    private static Settings settings;
     private static DefaultTableModel tableModel;
-    JFrame createTableFrame;
-    JScrollPane createTableScrollPane;
-    JComboBox<String> ctCombo;
-    JTextField newTableName;
+    private JFrame createTableFrame;
+    private JScrollPane createTableScrollPane;
+    private JComboBox<String> ctCombo;
+    private JTextField newTableName;
 
 
 
@@ -116,8 +121,8 @@ public class main {
                 try{
                     final String tableName=list1.getSelectedValue().toString();
                     Class.forName("com.mysql.jdbc.Driver");
-                    Connection connection=DriverManager.getConnection("jdbc:mysql://"+settings.getHost(),settings.getUsername(),settings.getPassword());
-                    PreparedStatement preparedStatement=connection.prepareStatement(String.format("select * from %s", tableName));
+                    final Connection connection=DriverManager.getConnection("jdbc:mysql://"+settings.getHost(),settings.getUsername(),settings.getPassword());
+                    final PreparedStatement preparedStatement=connection.prepareStatement(String.format("select * from %s", tableName));
                     final ResultSet resultSet=preparedStatement.executeQuery();
                     final ResultSetMetaData metadata = resultSet.getMetaData();
                     final int columnCount;
@@ -127,7 +132,7 @@ public class main {
 
                     tableModel = new DefaultTableModel(new Object[]{},0);
                     final JFrame frameTable=new JFrame("table "+ tableName);
-                    Vector<String> v=new Vector<String>();
+                    final Vector<String> v=new Vector<String>();
 
                     for(int i=1;i<=columnCount;i++){
                         String name=metadata.getColumnName(i);
@@ -154,13 +159,13 @@ public class main {
 
 
 
-                    JButton btn1=new JButton("Search");
+                    final JButton btn1=new JButton("Search");
 
                     panelT = new JPanel();
                     panelT.add(new JScrollPane(table));
-                    JPanel panelT2 =new JPanel();
+                    final JPanel panelT2 =new JPanel();
 
-                    JButton btn2=new JButton("click");
+                    final JButton btn2=new JButton("click");
                     searchField.setColumns(15);
                     panelT2.add(comboBox);
                     panelT2.add(checkBoxQuery);
@@ -172,7 +177,7 @@ public class main {
                     panelT.setLayout(new BoxLayout(panelT, BoxLayout.Y_AXIS));
                     frameTable.getContentPane().add(panelT);
 
-
+                    frameTable.setLocationRelativeTo(frame);
                     frameTable.setVisible(true);
                     btn1.addActionListener(new ActionListener() {
                         @Override
@@ -206,13 +211,14 @@ public class main {
                                     }
                                     tableModel1.addRow(ss);
                                 }
-                                JFrame searchFrame=new JFrame("search frame");
-                                JPanel searchPanel=new JPanel();
-                                JTable searchTable=new JTable(tableModel1);
+                                final JFrame searchFrame=new JFrame("search frame");
+                                final JPanel searchPanel=new JPanel();
+                                final JTable searchTable=new JTable(tableModel1);
                                 searchPanel.add(new JScrollPane(searchTable));
                                 searchFrame.add(searchPanel);
                                 searchFrame.setSize(600,200);
                                 searchFrame.setVisible(true);
+                                searchFrame.setLocationRelativeTo(frameTable);
 
                             } catch (ClassNotFoundException e1) {
                                 e1.printStackTrace();
@@ -229,7 +235,7 @@ public class main {
             public void actionPerformed(ActionEvent e) {
 
                 if(comboBox1.getSelectedItem().toString()!="Number Of Fields"){
-                    Vector<String> dataTypes=new Vector<String>();
+                    final Vector<String> dataTypes=new Vector<String>();
                     dataTypes.add("INT ( 11 )");
                     dataTypes.add("VARCHAR( 50 )");
                     dataTypes.add("DATE");
@@ -250,21 +256,32 @@ public class main {
                     numberOfFields = Integer.valueOf(comboBox1.getSelectedItem().toString());
                     final ArrayList<JComboBox> comboBoxes=new ArrayList<JComboBox>();
                     final ArrayList<JTextField> textFields=new ArrayList<JTextField>();
-                for(int i=0;i<numberOfFields;i++){
-                    textFields.add(new JTextField());
-                    comboBoxes.add(new JComboBox(dataTypes));
+                    final ArrayList<JRadioButton> radioButtons=new ArrayList<JRadioButton>();
+                    final ArrayList<JRadioButton> radioButtonsAutoIncriment=new ArrayList<JRadioButton>();
+                    final ButtonGroup group = new ButtonGroup();
+                    for(int i=0;i<numberOfFields;i++){
+                        textFields.add(new JTextField());
+                        comboBoxes.add(new JComboBox(dataTypes));
+                        radioButtons.add(new JRadioButton("primary"));
+                        radioButtonsAutoIncriment.add(new JRadioButton("auto inc"));
+                        }
+                    for (int i=0;i<numberOfFields;i++){
+                        group.add(radioButtons.get(i));
                     }
+
                     JPanel panelc=new JPanel();
                     panelc.setLayout(new BoxLayout(panelc, BoxLayout.Y_AXIS));
 
-                for (int i=0;i<numberOfFields;i++){
-                    JPanel panelInner=new JPanel();
-                    panelInner.add(textFields.get(i));
-                    textFields.get(i).setColumns(15);
-                    panelInner.add(comboBoxes.get(i));
-                    panelc.add(panelInner);
+                    for (int i=0;i<numberOfFields;i++){
+                        final JPanel panelInner=new JPanel();
+                        panelInner.add(textFields.get(i));
+                        textFields.get(i).setColumns(15);
+                        panelInner.add(comboBoxes.get(i));
+                        panelInner.add(radioButtonsAutoIncriment.get(i));
+                        panelInner.add(radioButtons.get(i));
+                        panelc.add(panelInner);
 
-                }
+                        }
                     panelc.add(dropTableCheck);
 
                     JPanel pp=new JPanel();
@@ -279,9 +296,11 @@ public class main {
 
                     createTableFrame.add(pp);
 
-
-                    createTableFrame.setSize(300,420);
                     createTableFrame.setResizable(false);
+                    createTableFrame.setSize(400,450);
+
+
+                    createTableFrame.setLocationRelativeTo(frame);
                     createTableFrame.setVisible(true);
                     btnCreate.addActionListener(new ActionListener() {
                         @Override
@@ -291,18 +310,25 @@ public class main {
                             query+=newTableName.getText().toString();
                             query+=" (";
                             for(int i=0;i<numberOfFields;i++){
-                                     query+=String.format("%s %s",textFields.get(i).getText().toString(),comboBoxes.get(i).getSelectedItem().toString());
+                                    query+=String.format("%s %s",textFields.get(i).getText().toString(),comboBoxes.get(i).getSelectedItem().toString());
+                                if(radioButtonsAutoIncriment.get(i).isSelected()){
+                                    query+=" AUTO_INCREMENT ";
+                                }
                                 if(i<numberOfFields-1){
                                     query+=",";
                                 }
                             }
+                            for (int i=0;i<numberOfFields;i++){
+                                if(radioButtons.get(i).isSelected()){
+                                    query+=String.format(", PRIMARY KEY (%s) ",textFields.get(i).getText().toString());
+                                }
+                            }
                             query+=")";
 
+                            System.out.println(query);
 
-
-
-                            MysqlDataSource ds = new MysqlConnectionPoolDataSource();
-                            String[] all = settings.getHost().split("/");
+                            final String[] all = settings.getHost().split("/");
+                            final MysqlDataSource ds = new MysqlConnectionPoolDataSource();
                             ds.setServerName(all[0]);
                             ds.setPort(3306);
                             ds.setUser(settings.getUsername());
@@ -347,6 +373,39 @@ public class main {
                 }
             }
         });
+
+        delateTableButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object[] options = {"Yes Delete",
+                        "No don't Delete"};
+                int deleteConfim=JOptionPane.showOptionDialog(frame,"delete table "+list1.getSelectedValue().toString(),"message",
+                        JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE,null,options,options[1]);
+                if (deleteConfim==JOptionPane.OK_OPTION){
+                    String[] all = settings.getHost().split("/");
+                    MysqlDataSource ds = new MysqlConnectionPoolDataSource();
+                    ds.setServerName(all[0]);
+                    ds.setPort(3306);
+                    ds.setUser(settings.getUsername());
+                    ds.setPassword(settings.getPassword());
+                    Connection connection = null ;
+                    try {
+                        connection =  ds.getConnection();
+                        Statement statement = connection.createStatement();
+                        statement.executeUpdate("USE "+all[1]) ;
+
+                            statement.execute(String.format("DROP TABLE %s", list1.getSelectedValue().toString()));
+
+
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    }
+
+
+                }
+
+            }
+        });
     }
     public void setS(String s1,String s2,String s3){
         settings.setHost(s1);
@@ -354,12 +413,27 @@ public class main {
         settings.setPassword(s3);
     }
     public static void main(String[] args) throws InterruptedException, InvocationTargetException {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
 
-        JFrame frame = new JFrame("main");
+        frame = new JFrame("main");
         frame.setContentPane(new main().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+
         frame.setResizable(false);
+        frame.setLocationRelativeTo( null );
         frame.setVisible(true);
     }
+
+
 }
