@@ -131,8 +131,9 @@ public class main {
 
                     for(int i=1;i<=columnCount;i++){
                         String name=metadata.getColumnName(i);
+                        String colType= metadata.getColumnTypeName(i);
 
-                        tableModel.addColumn(name);
+                        tableModel.addColumn(String.format("%s(%s)", name, colType));
                         v.add(name);
 
                     }
