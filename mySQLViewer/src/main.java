@@ -283,15 +283,16 @@ public class main {
                                 tableModel1 = new DefaultTableModel(new Object[]{},0);
                                 for(int i=1;i<=columnCount;i++){
                                     String name=metadata2.getColumnName(i);
-
                                     tableModel1.addColumn(name);
                                 }
+
 
                                 while (resultSet2.next()){
                                     String[] ss=new String[columnCount];
                                     for (int i=1;i<=columnCount;i++){
                                         ss[i-1]=resultSet2.getString(i);
                                     }
+
                                     tableModel1.addRow(ss);
                                 }
                                 final JFrame searchFrame=new JFrame("search frame");
