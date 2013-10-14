@@ -8,7 +8,7 @@
     <properties>
       <font size="14" style="1"/>
     </properties>
-    <border type="none"/>
+    <border type="none" title="mySQLViewer 0.1"/>
     <children>
       <tabbedpane id="fb8b8" binding="tabbedPane1" default-binding="true">
         <constraints>

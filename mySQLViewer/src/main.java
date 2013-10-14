@@ -126,6 +126,7 @@ public class main {
                     final ResultSet resultSet=preparedStatement.executeQuery();
                     final ResultSetMetaData metadata = resultSet.getMetaData();
                     final int columnCount;
+                    final JButton btnInsert=new JButton("Insert Into");
                     columnCount = metadata.getColumnCount();
                     final JCheckBox checkBoxQuery;
                     checkBoxQuery=new JCheckBox("serch the whole word");
@@ -165,12 +166,13 @@ public class main {
                     panelT.add(new JScrollPane(table));
                     final JPanel panelT2 =new JPanel();
 
-                    final JButton btn2=new JButton("click");
+
                     searchField.setColumns(15);
                     panelT2.add(comboBox);
                     panelT2.add(checkBoxQuery);
                     panelT2.add(searchField);
                     panelT2.add(btn1);
+                    panelT2.add(btnInsert);
                     panelT.add(panelT2);
 
 
@@ -179,6 +181,78 @@ public class main {
 
                     frameTable.setLocationRelativeTo(frame);
                     frameTable.setVisible(true);
+
+                    btnInsert.addActionListener(new ActionListener() {
+
+                        @Override
+
+                        public void actionPerformed(ActionEvent e) {
+                            final JFrame insertFrame=new JFrame("insert into "+tableName);
+
+                            final JPanel inserFramePanel=new JPanel();
+                            inserFramePanel.setLayout(new GridBagLayout());
+                            final JButton insertFinishButton=new JButton("Insert Values");
+                            final ArrayList<JTextField>insertFields=new ArrayList<JTextField>();
+                            final ArrayList<JLabel>insertLabels=new ArrayList<JLabel>();
+                            for (int i=0;i<columnCount;i++){
+                                insertFields.add(new JTextField());
+                                insertLabels.add(new JLabel(tableModel.getColumnName(i)));
+                            }
+                            for (int i=0;i<columnCount;i++){
+                                JPanel kk=new JPanel();
+                                kk.add(insertLabels.get(i));
+                                insertFields.get(i).setColumns(10);
+                                kk.add(insertFields.get(i));
+                                inserFramePanel.add(kk);
+                            }
+                            inserFramePanel.add(insertFinishButton);
+                            insertFrame.getContentPane().add(new JScrollPane(inserFramePanel));
+
+                            insertFrame.setResizable(false);
+                            insertFrame.setSize(800,150);
+                            insertFrame.setVisible(true);
+
+                            insertFinishButton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    String query="";
+                                    query+=String.format("INSERT INTO %s VALUES(",tableName);
+                                    for (int i=0;i<columnCount;i++){
+                                        if(insertFields.get(i).getText().isEmpty()){
+                                            query+="NULL ";
+                                        }else{
+                                               query+=String.format("'%s'", insertFields.get(i).getText());
+                                        }
+                                        if (i<columnCount-1){
+                                            query+=",";
+                                        }
+                                    }
+                                    query+=")";
+                                    System.out.println(query);
+                                    final String[] all = settings.getHost().split("/");
+                                    final MysqlDataSource ds = new MysqlConnectionPoolDataSource();
+                                    ds.setServerName(all[0]);
+                                    ds.setPort(3306);
+                                    ds.setUser(settings.getUsername());
+                                    ds.setPassword(settings.getPassword());
+                                    Connection connection = null ;
+                                    try {
+                                        connection =  ds.getConnection();
+                                        Statement statement = connection.createStatement();
+                                        statement.executeUpdate("USE "+all[1]) ;
+
+                                        statement.executeUpdate(query);
+                                    } catch (SQLException e1) {
+                                        e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                                    }
+
+
+                                }
+                            });
+
+
+                        }
+                    });
                     btn1.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -395,7 +469,7 @@ public class main {
                         statement.executeUpdate("USE "+all[1]) ;
 
                             statement.execute(String.format("DROP TABLE %s", list1.getSelectedValue().toString()));
-
+                        refreshListButton.doClick();
 
                     } catch (SQLException e1) {
                         e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -425,9 +499,10 @@ public class main {
             e.printStackTrace();
         }
 
-        frame = new JFrame("main");
+        frame = new JFrame("mySQLViewer");
         frame.setContentPane(new main().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         frame.pack();
 
         frame.setResizable(false);
